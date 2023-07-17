@@ -21,10 +21,9 @@ import joblib
 import streamlit as st
 
 df = pd.read_csv('loan_sanction_train.csv')
-df['Credit_History'].fillna(df['Credit_History'].mode()[0], inplace=True)
-df =  df.fillna(df.mean())
-df  = df.ffill().bfill()
 df =  df.drop(['Loan_ID'],axis= 1)
+df['Credit_History'].fillna(df['Credit_History'].mode()[0], inplace=True)
+df  = df.ffill().bfill()
 
 model = joblib.load('xgb.joblib')
 
